@@ -1,0 +1,18 @@
+# poetry
+export PATH="$HOME/.poetry/bin:$PATH"
+
+# my aliases
+alias ll='ls -alhF'
+alias la='ls -A'
+alias l='ls -CF'
+alias upfullclean='sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get autoremove -y'
+alias up10k='git -C ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k pull'
+
+alias avenv='source .venv/bin/activate'
+alias dvenv='deactivate'
+
+alias weather='curl wttr.in/Braunschweig'
+alias howdoi='~/tools/.venv/bin/howdoi'
+
+alias chrome='/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe'
+alias anthony='streamlink --player="/mnt/c/Program\ Files/VideoLAN/VLC/vlc.exe" twitch.tv/anthonywritescode best'

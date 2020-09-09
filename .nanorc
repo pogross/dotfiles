@@ -1,0 +1,8 @@
+set linenumbers
+set tabsize 4
+set autoindent
+set fill -10
+set smooth
+set tabstospaces
+
+set numbercolor white

@@ -1,0 +1,147 @@
+{
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "launchMode": "maximized",
+    "useTabSwitcher": true,
+    "keybindings": [
+        {
+            "keys": "ctrl+shift+p",
+            "command": "commandPalette"
+        },
+        {
+            "keys": "ctrl+shift+c",
+            "command": "copy"
+        },
+        {
+            "keys": "ctrl+shift+v",
+            "command": "paste"
+        }
+    ],
+    "profiles": [
+        {
+            "name": "WSL Ubuntu",
+            "source": "Windows.Terminal.Wsl",
+            "cursorShape": "filledBox",
+            "hidden": false,
+            "suppressApplicationTitle": true,
+            "useAcrylic": false,
+            "colorScheme": "VSCode",
+            "fontFace": "FiraCode NF",
+            "fontSize": 11,
+            "startingDirectory": "//wsl$/Ubuntu/home/patrick",
+            "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}"
+        },
+        {
+            "name": "Windows PowerShell",
+            "commandline": "powershell.exe",
+            "hidden": false,
+            "fontSize": 11,
+            "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+            "colorScheme": "VSCode",
+            "fontFace": "FiraCode NF"
+        },
+        {
+            "name": "cmd",
+            "commandline": "cmd.exe",
+            "hidden": false,
+            "fontSize": 11,
+            "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+            "colorScheme": "VSCode",
+            "fontFace": "FiraCode NF"
+        },
+        {
+            "name": "Azure Cloud Shell",
+            "source": "Windows.Terminal.Azure",
+            "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+            "hidden": true
+        }
+    ],
+    "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+    "schemes": [
+        {
+            "name": "VSCode",
+            "white": "#EAEAEA",
+            "yellow": "#D7BA7D",
+            "red": "#D8473F",
+            "brightPurple": "#DF89DD",
+            "cyan": "#00B6D6",
+            "brightBlue": "#9BDBFE",
+            "black": "#000000",
+            "purple": "#CA5BC8",
+            "brightGreen": "#1AD69C",
+            "brightRed": "#F6645D",
+            "brightYellow": "#F6F353",
+            "brightBlack": "#797979",
+            "green": "#39b096",
+            "foreground": "#D3D3D3",
+            "brightCyan": "#2BC4E2",
+            "background": "#232323",
+            "blue": "#BBBBBB",
+            "brightWhite": "#EAEAEA"
+        },
+        {
+            "foreground": "#F2F2F2",
+            "name": "Campbell",
+            "background": "#0C0C0C",
+            "colors": [
+                "#0C0C0C",
+                "#C50F1F",
+                "#13A10E",
+                "#C19C00",
+                "#0037DA",
+                "#881798",
+                "#3A96DD",
+                "#CCCCCC",
+                "#767676",
+                "#E74856",
+                "#16C60C",
+                "#F9F1A5",
+                "#3B78FF",
+                "#B4009E",
+                "#61D6D6",
+                "#F2F2F2"
+            ]
+        },
+        {
+            "name": "Dracula",
+            "white": "#F8F8F2",
+            "yellow": "#F1FA8C",
+            "red": "#FF5555",
+            "brightPurple": "#FF92DF",
+            "cyan": "#8BE9FD",
+            "brightBlue": "#D6ACFF",
+            "black": "#21222C",
+            "purple": "#FF79C6",
+            "brightGreen": "#69FF94",
+            "brightRed": "#FF6E6E",
+            "brightYellow": "#FFFFA5",
+            "brightBlack": "#6272A4",
+            "green": "#50FA7B",
+            "foreground": "#F8F8F2",
+            "brightCyan": "#A4FFFF",
+            "background": "#282A36",
+            "blue": "#BD93F9",
+            "brightWhite": "#FFFFFF"
+        },
+        {
+            "name": "Monokai Night",
+            "white": "#f8f8f2",
+            "yellow": "#e6db74",
+            "red": "#f92672",
+            "brightPurple": "#ae81ff",
+            "cyan": "#e69f66",
+            "brightBlue": "#66d9ef",
+            "black": "#1f1f1f",
+            "purple": "#ae81ff",
+            "brightGreen": "#a6e22e",
+            "brightRed": "#f92672",
+            "brightYellow": "#e6db74",
+            "brightBlack": "#75715e",
+            "green": "#a6e22e",
+            "foreground": "#f8f8f8",
+            "brightCyan": "#e69f66",
+            "background": "#1f1f1f",
+            "blue": "#6699df",
+            "brightWhite": "#f8f8f2"
+        }
+    ]
+}
