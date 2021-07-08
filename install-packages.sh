@@ -12,8 +12,7 @@ python3 -m pipx ensurepath
 
 # deadsnakes
 os_name="$(grep -oP 'ID=\K\w+' /etc/os-release)"
-if [ $os_name == 'ubuntu' ]
-then
+if [ $os_name == 'ubuntu' ]; then
     echo Ubuntu detected, setting up deadsnakes ppa
     sudo add-apt-repository ppa:deadsnakes/ppa -y
     sudo apt-get update

@@ -6,16 +6,54 @@ alias upfullclean='sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt
 alias upfull='sudo apt-get update -y && sudo apt-get upgrade -y'
 alias weather='curl wttr.in/Braunschweig'
 
-# Add a new line at the end of the command prompt
-PS1=${PS1%?}
-PS1=${PS1%?}\n'$ '
+# coloring and prompt
+txtred='\e[0;31m' # Red
+txtgrn='\e[0;32m' # Green
+bldgrn='\e[1;32m' # Bold Green
+bldpur='\e[1;35m' # Bold Purple
+txtrst='\e[0m'    # Text Reset
+
+parse_git_branch() {
+    git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+build_prompt() {
+    EXIT=$? # previous exit status
+    red='\[\e[0;31m\]'
+    green='\[\e[0;32m\]'
+    boldgreen='\[\e[1;32m\]'
+    boldpurple='\[\e[1;35m\]'
+    reset='\[\e[0m\]'
+
+    PS1="$green\w $red\$(parse_git_branch)$reset\n"
+
+    # for prepending active virutalenvs
+    if [ -z "$VIRTUAL_ENV_DISABLE_PROMPT" ]; then
+        _OLD_VIRTUAL_PS1="$PS1"
+        if [ "$(basename $VIRTUAL_ENV)" = "__" ]; then
+            PS1="[$(basename $(dirname $VIRTUAL_ENV))] $PS1"
+        elif [ "$VIRTUAL_ENV" != "" ]; then
+            PS1="($(basename $VIRTUAL_ENV)) $PS1"
+        fi
+        # for red/green color if previous command failed
+        if [ $EXIT != 0 ]; then
+            PS1+="$red"
+        else
+            PS1+="$green"
+        fi
+    fi
+
+    # prepend with linebreak, insert everything else, reset color
+    PS1="\n${PS1}\$${reset} "
+}
+
+PROMPT_COMMAND=build_prompt
 
 # python
-venv () {
-    if [ -z "$1" ];
-    then
-        echo "No python version provided. Defaulting to python3.8"
-        python3.8 -m venv .venv
+venv() {
+    if [ -z "$1" ]; then
+        echo "No python version provided. Defaulting to python3.9"
+        python3.9 -m venv .venv
     else
         echo "Creating venv for python $1"
         python"$1" -m venv .venv
@@ -24,10 +62,9 @@ venv () {
     source .venv/bin/activate
     pip install -U pip
 
-    if [ -n "$2" ] && [ "$2" = "dev" ];
-    then
+    if [ -n "$2" ] && [ "$2" = "dev" ]; then
         echo "Installing dev packages"
-        pip install flake8 black mypy isort
+        pip install flake8 black mypy isort pytest
     else
         echo "Skipping dev packages"
     fi
