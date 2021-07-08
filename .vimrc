@@ -1,31 +1,29 @@
+" https://gist.github.com/miguelgrinberg/527bb5a400791f89b3c4da4bd61222e4
 " plugins
 let need_to_install_plugins = 0
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    "autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     let need_to_install_plugins = 1
 endif
 
 call plug#begin()
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'frazrepo/vim-rainbow'
-Plug 'mileszs/ack.vim'
-Plug 'tomasiser/vim-code-dark'
 Plug 'tpope/vim-sensible'
 Plug 'itchyny/lightline.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'ap/vim-buftabline'
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-scripts/The-NERD-tree'
+Plug 'preservim/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'scrooloose/syntastic'
+Plug 'jiangmiao/auto-pairs'
+Plug 'dense-analysis/ale'
 Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'lepture/vim-jinja'
 Plug 'pangloss/vim-javascript'
+Plug 'alvan/vim-closetag'
+Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 filetype plugin indent on
@@ -43,6 +41,7 @@ set laststatus=2
 
 " enable 256 colors
 set t_Co=256
+set t_ut=
 
 " turn on line numbering
 set number
@@ -56,9 +55,15 @@ set fileencoding=utf-8
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set colorcolumn=88
+set colorcolumn=80
 set expandtab
 set viminfo='25,\"50,n~/.viminfo
+autocmd FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+" auto-pairs
+au FileType python let b:AutoPairs = AutoPairsDefine({"f'" : "'", "r'" : "'", "b'" : "'"})
 
 " word movement
 imap <S-Left> <Esc>bi
@@ -68,8 +73,10 @@ nmap <S-Right> w
 
 " indent/unindent with tab/shift-tab
 nmap <Tab> >>
-imap <S-Tab> <Esc><<i
 nmap <S-tab> <<
+imap <S-Tab> <Esc><<i
+vmap <Tab> >gv
+vmap <S-Tab> <gv
 
 " mouse
 set mouse=a
@@ -89,7 +96,7 @@ endfunction
 
 " color scheme
 syntax on
-colorscheme codedark
+colorscheme onedark
 filetype on
 filetype plugin indent on
 
@@ -133,8 +140,6 @@ function ToggleWrap()
     endif
 endfunction
 
-" let mapleader = "\<space>"
-
 " move through split windows
 nmap <leader><Up> :wincmd k<CR>
 nmap <leader><Down> :wincmd j<CR>
@@ -150,7 +155,8 @@ nmap <leader>x :bd<CR>
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " file browser
-let NERDTreeIgnore=['\.pyc$', '__pycache__']
+let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+let NERDTreeMinimalUI = 1
 let g:nerdtree_open = 0
 map <leader>n :call NERDTreeToggle()<CR>
 function NERDTreeToggle()
@@ -163,18 +169,25 @@ function NERDTreeToggle()
     endif
 endfunction
 
-" syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-map <leader>s :SyntasticCheck<CR>
-map <leader>d :SyntasticReset<CR>
-map <leader>e :lnext<CR>
-map <leader>r :lprev<CR>
+function! StartUp()
+    if 0 == argc()
+        NERDTree
+    end
+endfunction
+autocmd VimEnter * call StartUp()
 
-" tag list
+" ale
+map <C-e> <Plug>(ale_next_wrap)
+map <C-r> <Plug>(ale_previous_wrap)
+
+" tags
 map <leader>t :TagbarToggle<CR>
+
+" copy, cut and paste
+vmap <C-c> "+y
+vmap <C-x> "+c
+vmap <C-v> c<ESC>"+p
+imap <C-v> <ESC>"+pa
 
 " disable autoindent when pasting text
 " source: https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode

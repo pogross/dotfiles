@@ -1,0 +1,37 @@
+# bash aliases
+alias ll='ls -alhF'
+alias la='ls -A'
+alias l='ls -CF'
+alias upfullclean='sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get autoremove -y'
+alias upfull='sudo apt-get update -y && sudo apt-get upgrade -y'
+alias weather='curl wttr.in/Braunschweig'
+
+# Add a new line at the end of the command prompt
+PS1=${PS1%?}
+PS1=${PS1%?}\n'$ '
+
+# python
+venv () {
+    if [ -z "$1" ];
+    then
+        echo "No python version provided. Defaulting to python3.8"
+        python3.8 -m venv .venv
+    else
+        echo "Creating venv for python $1"
+        python"$1" -m venv .venv
+    fi
+
+    source .venv/bin/activate
+    pip install -U pip
+
+    if [ -n "$2" ] && [ "$2" = "dev" ];
+    then
+        echo "Installing dev packages"
+        pip install flake8 black mypy isort
+    else
+        echo "Skipping dev packages"
+    fi
+}
+
+alias avenv='source .venv/bin/activate'
+alias dvenv='deactivate'
