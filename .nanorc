@@ -6,3 +6,11 @@ set smooth
 set tabstospaces
 
 set numbercolor white
+
+include /usr/share/nano/css.nanorc
+include /usr/share/nano/html.nanorc
+include /usr/share/nano/java.nanorc
+include /usr/share/nano/javascript.nanorc
+include /usr/share/nano/json.nanorc
+include /usr/share/nano/python.nanorc
+include /usr/share/nano/sh.nanorc
