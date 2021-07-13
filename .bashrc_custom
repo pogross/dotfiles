@@ -49,6 +49,11 @@ build_prompt() {
 
 PROMPT_COMMAND=build_prompt
 
+# autocomplete cycling and showing like zsh
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
+bind '"\e[Z":menu-complete-backward'
+
 # python
 venv() {
     if [ -z "$1" ]; then
