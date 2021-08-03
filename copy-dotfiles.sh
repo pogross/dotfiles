@@ -1,10 +1,12 @@
 #! /bin/bash
 
-DOTFILES=(.bashrc_custom .nanorc .tmux-conf .vimrc)
+DOTFILES=(".aliases" ".bashrc_custom" ".nanorc" ".tmux-conf" ".vimrc")
 
 # Remove old dotfiles and replace them
-for dotfile in $(echo ${DOTFILES[*]});
-do
-    rm ~/$(echo $dotfile)
-    ln -s ~/dotfiles/$(echo $dotfile) ~/$(echo $dotfile)
+for dotfile in ${DOTFILES[*]}; do
+    echo "Copying $dotfile ..."
+    if [ -f "~/$dotfile" ]; then
+        rm "~/$dotfile"
+    fi
+    ln -s "~/dotfiles/$dotfile" "~/$dotfile"
 done

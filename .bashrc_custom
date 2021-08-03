@@ -1,11 +1,3 @@
-# bash aliases
-alias ll='ls -alhF'
-alias la='ls -A'
-alias l='ls -CF'
-alias upfullclean='sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get autoremove -y'
-alias upfull='sudo apt-get update -y && sudo apt-get upgrade -y'
-alias weather='curl wttr.in/Braunschweig'
-
 # coloring and prompt
 txtred='\e[0;31m' # Red
 txtgrn='\e[0;32m' # Green
@@ -53,27 +45,3 @@ PROMPT_COMMAND=build_prompt
 bind 'set show-all-if-ambiguous on'
 bind 'TAB:menu-complete'
 bind '"\e[Z":menu-complete-backward'
-
-# python
-venv() {
-    if [ -z "$1" ]; then
-        echo "No python version provided. Defaulting to python3.9"
-        python3.9 -m venv .venv
-    else
-        echo "Creating venv for python $1"
-        python"$1" -m venv .venv
-    fi
-
-    source .venv/bin/activate
-    pip install -U pip
-
-    if [ -n "$2" ] && [ "$2" = "dev" ]; then
-        echo "Installing dev packages"
-        pip install flake8 black mypy isort pytest
-    else
-        echo "Skipping dev packages"
-    fi
-}
-
-alias avenv='source .venv/bin/activate'
-alias dvenv='deactivate'
