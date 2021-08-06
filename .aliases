@@ -4,6 +4,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias upfullclean='sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get autoremove -y'
 alias upfull='sudo apt-get update -y && sudo apt-get upgrade -y'
+alias up10k='git -C ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k pull'
 alias weather='curl wttr.in/Braunschweig'
 
 # python

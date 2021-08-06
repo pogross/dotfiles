@@ -27,3 +27,6 @@ echo "Setting up poetry"
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python3 -
 mkdir ${HOME}/.oh-my-zsh/custom/plugins/poetry
 poetry completions zsh > ${HOME}/.oh-my-zsh/custom/plugins/poetry/_poetry
+
+# default shell
+chsh -s $(which zsh)
