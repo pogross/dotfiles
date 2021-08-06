@@ -1,14 +1,12 @@
 # packages
 echo "Setting up general packages"
 sudo apt update
-sudo apt install git curl tmux vim zsh  -y
+sudo apt install git curl tmux vim zsh -y
 
 # omz and stuff
-git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc"
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${HOME}/.oh-my-zsh/custom/themes/powerlevel10k
+git clone https://github.com/zsh-users/zsh-autosuggestions ${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 # deadsnakes
 os_name="$(grep -oP 'ID=\K\w+' /etc/os-release)"
@@ -20,12 +18,12 @@ fi
 
 # pipx
 echo "Setting up pipx"
-python -m pip install --user --upgrade pip
-python -m pip install --user pipx
-python -m pipx ensurepath
+python3 -m pip install --user --upgrade pip
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
 
 # poetry
 echo "Setting up poetry"
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
-mkdir $ZSH_CUSTOM/plugins/poetry
-poetry completions zsh > $ZSH_CUSTOM/plugins/poetry/_poetry
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python3 -
+mkdir ${HOME}/.oh-my-zsh/custom/plugins/poetry
+poetry completions zsh > ${HOME}/.oh-my-zsh/custom/plugins/poetry/_poetry
