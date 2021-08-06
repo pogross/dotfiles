@@ -43,7 +43,8 @@ set t_Co=256
 set t_ut=
 
 " turn on line numbering
-set number
+set number relativenumber
+set nu rnu
 
 " sane text files
 set fileformat=unix
@@ -62,7 +63,7 @@ autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 " auto-pairs
-au FileType python let b:AutoPairs = AutoPairsDefine({"f'" : "'", "r'" : "'", "b'" : "'"})
+autocmd FileType python let b:AutoPairs = AutoPairsDefine({"f'" : "'", "r'" : "'", "b'" : "'"})
 
 " word movement
 imap <S-Left> <Esc>bi
@@ -178,9 +179,6 @@ autocmd VimEnter * call StartUp()
 " ale
 map <C-e> <Plug>(ale_next_wrap)
 map <C-r> <Plug>(ale_previous_wrap)
-
-" tags
-map <leader>t :TagbarToggle<CR>
 
 " copy, cut and paste
 vmap <C-c> "+y
