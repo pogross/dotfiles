@@ -1,6 +1,6 @@
 #! /bin/bash
 
-DOTFILES=(".aliases" ".bashrc_custom" ".nanorc" ".tmux-conf" ".vimrc")
+DOTFILES=(".aliases" ".bashrc_custom" ".nanorc" ".tmux-conf" ".vimrc" ".zshrc" ".p10k.zsh")
 
 # Remove old dotfiles and replace them
 for dotfile in ${DOTFILES[*]}; do
