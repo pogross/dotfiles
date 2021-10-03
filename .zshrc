@@ -76,7 +76,7 @@ DISABLE_MAGIC_FUNCTIONS=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(z git zsh-autosuggestions poetry npm)
+plugins=(z git zsh-autosuggestions poetry npm podman)
 
 source $ZSH/oh-my-zsh.sh
 
