@@ -10,8 +10,8 @@ alias weather='curl wttr.in/Braunschweig'
 # python
 venv() {
     if [ -z "$1" ]; then
-        echo "No python version provided. Defaulting to python3.9"
-        python3.9 -m venv .venv
+        echo "No python version provided. Defaulting to python3.10"
+        python3.10 -m venv .venv
     else
         echo "Creating venv for python $1"
         python"$1" -m venv .venv
